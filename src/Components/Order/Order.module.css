@@ -1,0 +1,8 @@
+.item {
+
+}
+
+.container {
+    composes: container from './../../App.css';
+    justify-content: center;
+}
