@@ -6,3 +6,22 @@
     composes: container from './../../App.css';
     justify-content: center;
 }
+.notesList {
+    composes: container from './../../App.css';
+    justify-content: left;
+    flex-direction: column;
+    border-right: 1px solid gray;
+}
+.searchBar {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    max-width: 40%;
+    flex-wrap: nowrap;
+}
+
+.noteBody {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+}

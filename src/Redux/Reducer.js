@@ -1,4 +1,4 @@
-import {usersAPI} from "./API/api";
+import {notesAPI, usersAPI} from "./API/api";
 
 //actions types decloration
 const CREATE_NOTE = 'MAIN_PAGE/CREATE_NOTE';
@@ -8,19 +8,11 @@ const ADD_USER = 'USERS_PAGE/ADD_USER';
 const EDIT_NOTE = 'MAIN_PAGE/EDIT_NOTE';
 const DELETE_NOTE = 'MAIN_PAGE/DELETE_NOTE';
 const SET_IS_FETCHING = 'COMMON/SET_IS_FETCHING';
+const SET_NOTES = 'MAIN_PAGE/SET_NOTES';
 
-const persistedState = localStorage.getItem('notes') ? JSON.parse(localStorage.getItem('notes')) : {};
 const initialState = {
-    notes: persistedState.notes ? persistedState.notes : [
-        {
-            tegs: [{name: 'big'}],
-            id: 123,
-            title: "123",
-            body: "ngiuyg yug #gubv",
-            completed: false,
-        },
-    ],
-    filters: persistedState.filters ? persistedState.filters : [{title: 'big'}],
+    notes: [],
+    filters: [{title: 'big'}],
     isFetching: false,
 };
 
@@ -33,12 +25,17 @@ const reducer = (state = initialState, action) => {
                 isFetching: action.status,
             };
         //adding notes to state
+        case SET_NOTES:
+            return {
+                ...state,
+                notes: action.notes
+            };
+        //adding users to state
         case SET_USERS:
             return {
                 ...state,
                 users: action.users
             };
-        //adding filters to state
         case ADD_USER:
             return {
                 ...state,
@@ -92,7 +89,7 @@ export const addUserSuccess = (newUser) => {
         type: ADD_USER, newUser
     }
 };
-export const createNewNote = (newNote) => {
+export const createNewNoteSuccess = (newNote) => {
     return {
         type: CREATE_NOTE, newNote
     }
@@ -102,12 +99,17 @@ export const createTeg = (newFilter) => {
         type: CREATE_TEG, newFilter
     }
 };
-export const editNote = (obj) => {
+export const setNotesSuccess = (notes) => {
+    return {
+        type: SET_NOTES, notes
+    }
+};
+export const editNoteSuccess = (obj) => {
     return {
         type: EDIT_NOTE, obj
     }
 };
-export const deleteNote = (id, newTask) => {
+export const deleteNoteSuccess = (id, newTask) => {
     return {
         type: DELETE_NOTE, id, newTask
     }
@@ -132,4 +134,24 @@ export const addNewUser = (userName) => async (dispatch) => {
     dispatch(addUserSuccess(res));
 };
 
+export const createNewNote = (note) => async (dispatch) => {
+    let newNote = await notesAPI.addNote(note)
+            dispatch(createNewNoteSuccess(newNote))
+};
+export const fetchNotes = () => async (dispatch) => {
+    let data = await notesAPI.getNotes();
+            dispatch(setNotesSuccess(data))
+};
+export const deleteNote = (noteId) => (dispatch) => {
+    notesAPI.deleteNote(noteId)
+        .then( () => {
+            dispatch(deleteNoteSuccess(noteId))
+        })
+};
+export const editNote = (newNote) => (dispatch) => {
+    notesAPI.editNote(newNote)
+        .then(newNote => {
+            dispatch(editNoteSuccess(newNote))
+        })
+};
 export default reducer;

@@ -27,22 +27,7 @@ const OrderForm = (props) => {
 
     return (
         <form onSubmit={props.handleSubmit}>
-            {createField('phone', "phone", [requiredField], Input)}
-            {createField('first_name',"first_name", [requiredField], Input)}
             {createField('delivery_date',"delivery_date", [requiredField], Input, {type: "date"})}
-            {/*{createField('delivery_time',"delivery_time", [requiredField], Input)}*/}
-            <div>
-                <label>Tine</label>
-                <div>
-                    <Field name="delivery_time" component="select">
-                        <option></option>
-                        <option value="0">10-11</option>
-                        <option value="1">11-12</option>
-                        <option value="2">12-13</option>
-                    </Field>
-                </div>
-            </div>
-            {createField('address',"address", [requiredField], Input)}
             {createField('comment',"comment", null, Textarea, {type: "textarea"})}
 
             <div>

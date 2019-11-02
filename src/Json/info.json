@@ -1,0 +1,11 @@
+{
+  "users": [{
+    "id": 1,
+    "title": "roy",
+    "body": "india"
+  }, {
+    "id": 2,
+    "title": "sam",
+    "body": "wales"
+  }]
+}

@@ -25,5 +25,6 @@
 }
 .mainWrapper {
     composes: container;
+    justify-content: center;
     min-height: 120vh;
 }

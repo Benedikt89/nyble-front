@@ -17,6 +17,7 @@ function UsersPage({users, fetchUsers, addNewUser}) {
         fetchUsers();
     },[]);
 
+    if (users === undefined) users = [{id: '123', firstName: 'Bne'}];
     let displayUsers = users.map( u => <div key={u.id}>{u.firstName}</div>);
 
     return (
