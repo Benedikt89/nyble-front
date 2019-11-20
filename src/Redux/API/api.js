@@ -1,16 +1,16 @@
 import axios from "axios";
 
 const instance = axios.create({
-    baseURL: "http://localhost:7575/",
+    baseURL: "http://localhost:7575",
 });
 
 export const usersAPI = {
     getUsers () {
-        return axios.get('users')
+        return instance.get('/users')
             .then(res => res.data)
     },
     postUser (name) {
-        return axios.post("users", name)
+        return instance.post("/users", name)
             .then( res => res.data )
     }
 };

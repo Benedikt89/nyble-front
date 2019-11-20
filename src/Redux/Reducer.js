@@ -9,9 +9,20 @@ const EDIT_NOTE = 'MAIN_PAGE/EDIT_NOTE';
 const DELETE_NOTE = 'MAIN_PAGE/DELETE_NOTE';
 const SET_IS_FETCHING = 'COMMON/SET_IS_FETCHING';
 
-const persistedState = localStorage.getItem('notes') ? JSON.parse(localStorage.getItem('notes')) : {};
+
 const initialState = {
-    notes: persistedState.notes ? persistedState.notes : [
+    users: [
+        {
+            id: 12,
+            firstName: "123",
+            completed: false,
+        },
+        {
+            id: 13,
+            firstName: "ngiuyg yug #gubv",
+        },
+    ],
+    notes: [
         {
             tegs: [{name: 'big'}],
             id: 123,
@@ -20,7 +31,6 @@ const initialState = {
             completed: false,
         },
     ],
-    filters: persistedState.filters ? persistedState.filters : [{title: 'big'}],
     isFetching: false,
 };
 
@@ -130,6 +140,7 @@ export const fetchUsers = () => async (dispatch) => {
 export const addNewUser = (userName) => async (dispatch) => {
     const res = await usersAPI.postUser(userName);
     dispatch(addUserSuccess(res));
+    dispatch(fetchUsers())
 };
 
 export default reducer;

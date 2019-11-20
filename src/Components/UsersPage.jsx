@@ -5,7 +5,9 @@ import {addNewUser, fetchUsers} from "../Redux/Reducer";
 
 function UsersPage({users, fetchUsers, addNewUser}) {
 
-    const userNameRef  = useRef(null);
+
+
+    const userNameRef = useRef(null);
 
     const createUser = () => {
         let name = {firstName: userNameRef.current.value};
@@ -13,19 +15,19 @@ function UsersPage({users, fetchUsers, addNewUser}) {
         fetchUsers();
     };
 
-    useEffect(()=>{
+    useEffect(() => {
         fetchUsers();
-    },[]);
+    }, []);
 
-    let displayUsers = users.map( u => <div key={u.id}>{u.firstName}</div>);
+    let displayUsers = users.map(u => <div key={u.id}>{u.firstName}</div>);
 
     return (
         <div>
-                {displayUsers}
-                <div>
-                    <input ref={userNameRef}/>
-                    <button onClick={createUser}>newUser</button>
-                </div>
+            <div>
+                <input ref={userNameRef}/>
+                <button onClick={createUser}>newUser</button>
+            </div>
+            {displayUsers}
         </div>
     );
 }
