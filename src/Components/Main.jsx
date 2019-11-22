@@ -7,26 +7,23 @@ import UsersPage from "./UsersPage";
 import style from './Main.module.css';
 import Header from "./Header";
 import Notes from "./Notes/Notes";
+import Pizzas from "./Pizzas";
 
 
 function Main(props) {
 
     return (
         <div>
-            <div>
                 <Header/>
                 <div className={style.mainWrapper}>
-                {props.isFetching ?
-                    <Preloader/> :
                     <>
                         <Route exact path="/"
-                               render={()=> <Redirect to={"/notes"}/>}/>
+                               render={()=> <Redirect to={"/pizzas"}/>}/>
                         <Route path="/users" render={() => <UsersPage/>}/>
                         <Route path="/notes" render={() => <Notes/>}/>
+                        <Route path="/pizzas" render={() => <Pizzas/>}/>
                     </>
-                }
                 </div>
-            </div>
         </div>
     );
 }

@@ -5,6 +5,7 @@ const CREATE_NOTE = 'MAIN_PAGE/CREATE_NOTE';
 const CREATE_TEG = 'MAIN_PAGE/CREATE_TEG';
 const SET_USERS = 'USERS_PAGE/SET_USERS';
 const ADD_USER = 'USERS_PAGE/ADD_USER';
+const DELETE_USER = 'USERS_PAGE/DELETE_USER';
 const EDIT_NOTE = 'MAIN_PAGE/EDIT_NOTE';
 const DELETE_NOTE = 'MAIN_PAGE/DELETE_NOTE';
 const SET_IS_FETCHING = 'COMMON/SET_IS_FETCHING';
@@ -40,6 +41,11 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 users: [...state.users, action.newUser]
+            };
+        case DELETE_USER:
+            return {
+                ...state,
+                users: state.users.filter(u => u._id !== action.id)
             };
         //edit single note in state
         case EDIT_NOTE:
@@ -89,6 +95,13 @@ export const addUserSuccess = (newUser) => {
         type: ADD_USER, newUser
     }
 };
+export const deleteUserSuccess = (id) => {
+    return {
+        type: DELETE_USER, id
+    }
+};
+
+
 export const createNewNoteSuccess = (newNote) => {
     return {
         type: CREATE_NOTE, newNote
@@ -133,7 +146,12 @@ export const addNewUser = (userName) => async (dispatch) => {
     const res = await usersAPI.postUser(userName);
     dispatch(addUserSuccess(res));
 };
-
+export const deleteUser = (id) => (dispatch) => {
+    usersAPI.deleteUser(id)
+        .then( () => {
+            dispatch(deleteUserSuccess(id))
+        })
+};
 export const createNewNote = (note) => async (dispatch) => {
     let newNote = await notesAPI.addNote(note)
             dispatch(createNewNoteSuccess(newNote))
