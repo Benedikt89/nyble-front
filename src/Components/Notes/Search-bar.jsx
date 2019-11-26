@@ -5,7 +5,7 @@ import {createNewNote, editNote} from "../../Redux/Reducer";
 import {createField, Input, Textarea} from "../../common/FormControls/FormsControls";
 import {requiredField} from "../../utils/validators";
 import {reduxForm} from "redux-form";
-import style from "../Order/Order.module.css";
+import style from "./Notes.module.css";
 
 function Notes({notes, filters, createNewNote}) {
 

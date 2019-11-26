@@ -22,7 +22,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "yarn start": "yarn start",
-    "json-server": "json-server src/Json/info.json"
+    "json-server": "json-server --watch -p 8000 src/Json/db.json"
   },
   "eslintConfig": {
     "extends": "react-app"

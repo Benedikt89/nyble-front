@@ -5,7 +5,7 @@ import {createNewNote, editNote, fetchNotes} from "../../Redux/Reducer";
 import {createField, Input, Textarea} from "../../common/FormControls/FormsControls";
 import {requiredField} from "../../utils/validators";
 import {reduxForm} from "redux-form";
-import style from "../Order/Order.module.css";
+import style from "./Notes.module.css";
 import NoteBody from "./NoteBody";
 import * as PropTypes from "prop-types";
 
@@ -21,7 +21,7 @@ class Notes extends Component {
         const onSubmit = (formData) => {
             let newNote = {
                 tegs: [],
-                id: 123,
+                id: notes.length +1,
                 title: formData.title,
                 body: formData.body ? formData.body : 'no Body',
                 completed: false,
@@ -31,9 +31,7 @@ class Notes extends Component {
 
         if (!notes) notes = [{title: "none", body: "none"}];
         let notesList = notes.map(n => {
-            return (<div>
-                <div>{n.title}</div>
-            </div>)
+            return (<NoteBody note={n}/>)
         });
 
         return (
@@ -42,12 +40,11 @@ class Notes extends Component {
                     <SearchReduxForm/>
                     <div className={style.notesList}>
                         <h4>Notes</h4>
-                        {notesList}
                     </div>
+                    {notesList}
                 </div>
                 <div className={style.noteBody}>
                     <NewNoteFormReduxForm onSubmit={onSubmit}/>
-                    <NoteBody/>
                 </div>
             </div>
         );

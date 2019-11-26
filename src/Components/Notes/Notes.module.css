@@ -3,11 +3,11 @@
 }
 
 .container {
-    composes: container from './../../App.css';
+    composes: container from '../../App.css';
     justify-content: center;
 }
 .notesList {
-    composes: container from './../../App.css';
+    composes: container from '../../App.css';
     justify-content: left;
     flex-direction: column;
     border-right: 1px solid gray;

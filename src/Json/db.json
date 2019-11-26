@@ -1,0 +1,27 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "no",
+      "body": "no",
+      "completed": true
+    },
+    {
+      "tegs": [],
+      "id": 2,
+      "title": "Base",
+      "body": "ugk yg ",
+      "completed": false
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
