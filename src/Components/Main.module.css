@@ -20,7 +20,7 @@
 
 
 .container {
-    composes: container from './../App.css';
+    composes: container from '../App.scss';
 
 }
 .mainWrapper {

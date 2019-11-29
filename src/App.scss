@@ -112,3 +112,21 @@ hr {
     border-color: rgb(169, 160, 111);
 }
 button:focus {outline:0;}
+input{
+    padding: 5px;
+    background-color: inherit;
+    grid-area: text;
+    border-spacing: 200px;
+    border: none;
+    border-bottom: 1px solid #8f857d;
+    outline: none;
+    margin: 5px;
+}
+textarea{
+    padding: 5px;
+    background-color: inherit;
+    grid-area: text;
+    border-radius: 5px;
+    border-spacing: 200px;
+    margin: 5px;
+}

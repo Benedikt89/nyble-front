@@ -2,14 +2,14 @@ import React from 'react';
 import style from './FormControl.module.css'
 import {Field} from "redux-form";
 
-export const FormControl = ({input, meta: {touched, error}, children,}) => {
+export const FormControl = ({input, meta: {touched, error}, children}) => {
     const hasError = touched && error;
     return (
         <div>
             <div className={style.formControl + ' ' + (hasError ? style.error : '')}>
             {children}
             </div>
-            {hasError &&<span className={style.errorMessage}>{error}</span>}
+            {hasError && <span className={style.errorMessage}>{error}</span>}
         </div>
     )
 };

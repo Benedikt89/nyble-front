@@ -5,11 +5,13 @@ import {Redirect, Route} from "react-router-dom";
 import style from './Main.module.css';
 import Header from "./Header";
 import Notes from "./Notes/Notes";
+import { Button } from 'antd';
 
 function Main(props) {
 
     return (
         <div>
+            <Button type="primary">Button</Button>
             <Header/>
             <div className={style.mainWrapper}>
                 <Route exact path="/"

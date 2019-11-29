@@ -19,7 +19,7 @@ function Header() {
                         users
                     </div>
                 </NavLink>
-                <NavLink to="/pizzas" activeClassName={style.active}>
+                <NavLink to="/antd" activeClassName={style.active}>
                     <div className={style.item}>
                         pizzas
                     </div>

@@ -1,13 +1,12 @@
-import React, {Component, useEffect} from 'react';
+import React, {Component} from 'react';
 import {compose} from "redux";
 import {connect} from "react-redux";
 import {createNewNote, editNote, fetchNotes} from "../../Redux/Reducer";
-import {createField, Input, Textarea} from "../../common/FormControls/FormsControls";
-import {requiredField} from "../../utils/validators";
-import {reduxForm} from "redux-form";
 import style from "./Notes.module.css";
 import NoteBody from "./NoteBody";
 import * as PropTypes from "prop-types";
+import {SearchReduxForm} from "./SearchForm";
+import {NewNoteFormReduxForm} from "./NewNoteForm";
 
 class Notes extends Component {
 
@@ -65,39 +64,6 @@ const mapStateToProps = (state) => {
         filters: state.reducer.filters
     }
 };
-const SearchForm = (props) => {
-
-    return (
-        <form onSubmit={props.handleSubmit} className={style.container}>
-            {createField('tegSearch',"tegSearch", null, Input)}
-
-            <div>
-                <button>Search</button>
-            </div>
-        </form>
-    );
-};
-
-const SearchReduxForm = reduxForm({form: 'tegSearch'})(SearchForm);
-
-
-const NewNoteForm = (props) => {
-
-    return (
-        <form onSubmit={props.handleSubmit}>
-            {createField('title',"title", [requiredField], Input)}
-            {createField('body',"body", null, Textarea, {type: "textarea"})}
-            {props.error && <div>
-                <span className={style.error}>{props.error}</span>
-            </div>}
-            <div>
-                <button>Add Note</button>
-            </div>
-        </form>
-    );
-};
-
-const NewNoteFormReduxForm = reduxForm({form: 'new-note'})(NewNoteForm);
 
 
 export default compose(
